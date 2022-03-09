@@ -12,6 +12,18 @@
 
 namespace App\Models{
 /**
+ * App\Models\Post
+ *
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ */
+	class Post extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -24,6 +36,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @property-read int|null $posts_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
