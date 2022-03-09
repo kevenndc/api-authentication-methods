@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
 use App\Http\Requests\StoreAccountRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class AccountController extends Controller
+class UserController extends Controller
 {
     public function create(): View
     {
         return view('user.create');
     }
 
-    public function store(StoreAccountRequest $request)
+    public function store(StoreAccountRequest $request): JsonResponse
     {
         $data = $request->validated();
 
@@ -24,6 +26,12 @@ class AccountController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        User::create($data);
+        $user = User::create($data);
+
+        event(new UserCreated($user));
+
+        return response()->json([
+            'message' => 'User created.'
+        ]);
     }
 }

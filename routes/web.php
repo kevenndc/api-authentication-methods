@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('account')->group(function () {
-   Route::get('create', [AccountController::class, 'create']);
+Route::prefix('user')->group(function () {
+   Route::get('create', [UserController::class, 'create']);
 });
