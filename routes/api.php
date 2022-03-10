@@ -23,5 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
+    Route::post('/post/store', [PostController::class, 'store'])
+        ->middleware('ability:create-posts')
+        ->name('post.store');
 });

@@ -18,7 +18,7 @@ class SendWelcomeEmailNotification implements ShouldQueue
     public function handle(UserCreated $event): SentMessage
     {
         $user = $event->user;
-        $token = $user->createToken('api')->plainTextToken;
+        $token = $user->createToken('api', ['update-posts'])->plainTextToken;
 
         return Mail::send(new Welcome($user, $token));
     }

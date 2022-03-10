@@ -8,7 +8,7 @@ class StorePostRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return request()->user()->tokenCan('post:create');
+        return true;
     }
 
     public function rules(): array
