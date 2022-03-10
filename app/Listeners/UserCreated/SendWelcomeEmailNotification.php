@@ -19,8 +19,7 @@ class SendWelcomeEmailNotification implements ShouldQueue
     {
         $user = $event->user;
         $token = $user->createToken('api')->plainTextToken;
-        $encodedToken = str_replace('|', '\|', $token);
 
-        return Mail::send(new Welcome($user, $encodedToken));
+        return Mail::send(new Welcome($user, $token));
     }
 }

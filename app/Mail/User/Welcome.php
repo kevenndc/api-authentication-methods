@@ -26,13 +26,15 @@ class Welcome extends Mailable
      */
     public function build()
     {
+        $encodedToken = str_replace('|', '\|', $this->token);
+
         return $this->markdown('emails.user.welcome')
             ->subject('Welcome')
             ->from('api@example.com', 'API Auth')
             ->to($this->user->email)
             ->with([
                 'userName' => $this->user->name,
-                'token' => $this->token
+                'token' => $encodedToken
             ]);
     }
 }

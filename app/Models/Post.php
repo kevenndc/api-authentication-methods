@@ -10,6 +10,18 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'title',
+        'content',
+    ];
+
+    protected $casts = [
+        'user_id' => 'integer',
+        'title' => 'string',
+        'content' => 'string',
+    ];
+
     public function user(): HasOne
     {
         return $this->hasOne(User::class);
